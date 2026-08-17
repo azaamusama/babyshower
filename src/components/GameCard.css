@@ -1,0 +1,72 @@
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  text-align: left;
+  background: var(--white);
+  border: none;
+  border-radius: var(--r-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.game-card:active {
+  transform: scale(0.98);
+}
+
+.game-card__number {
+  flex: none;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gold-deep);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--cream-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.game-card__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.game-card__title {
+  font-size: 1.05rem;
+}
+
+.game-card__badge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.game-card__desc {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.game-card__arrow {
+  flex: none;
+  color: var(--ink-soft);
+  font-size: 1.2rem;
+}

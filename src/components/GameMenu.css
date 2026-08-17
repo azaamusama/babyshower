@@ -1,0 +1,21 @@
+.game-menu {
+  text-align: center;
+}
+
+.game-menu__title {
+  font-size: 1.7rem;
+  margin-top: var(--space-2xs);
+}
+
+.game-menu__hint {
+  color: var(--ink-soft);
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.game-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  text-align: left;
+}

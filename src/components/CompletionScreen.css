@@ -1,0 +1,35 @@
+.completion {
+  position: relative;
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  overflow: hidden;
+}
+
+.completion__confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.completion__icon {
+  color: var(--gold-deep);
+}
+
+.completion__title {
+  font-size: 2rem;
+}
+
+.completion__text {
+  color: var(--ink-soft);
+  max-width: 26rem;
+}

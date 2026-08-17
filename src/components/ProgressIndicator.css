@@ -1,0 +1,29 @@
+.progress {
+  margin-bottom: var(--space-md);
+}
+
+.progress__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
+}
+
+.progress__label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.progress__track {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--cream-deep);
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--gold) 0%, var(--blush-deep) 100%);
+  transition: width 0.4s ease;
+}

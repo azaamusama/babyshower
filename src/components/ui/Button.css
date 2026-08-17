@@ -1,0 +1,70 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: var(--touch-min);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--r-pill);
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:not(:disabled):hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn--secondary {
+  background: var(--white);
+  color: var(--ink);
+  border: 2px solid var(--cream-deep);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  font-weight: 600;
+  min-height: auto;
+  padding: 0.5rem 0.75rem;
+}
+
+.btn--ghost:hover {
+  color: var(--ink);
+}
+
+.btn--sm {
+  min-height: 40px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.btn--lg {
+  min-height: 56px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.btn--full {
+  width: 100%;
+}
