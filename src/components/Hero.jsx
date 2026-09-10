@@ -1,5 +1,7 @@
 import Button from "./ui/Button.jsx";
 import Motif from "./ui/Motif.jsx";
+import BabyCrawler from "./BabyCrawler.jsx";
+import { friends } from "../data/friends.js";
 import "./Hero.css";
 
 export default function Hero({ onStart }) {
@@ -9,8 +11,7 @@ export default function Hero({ onStart }) {
       <Motif shape="balloon" size={34} className="hero__motif hero__motif--2 anim-float" />
       <Motif shape="bow" size={26} className="hero__motif hero__motif--3 anim-float" />
 
-      <p className="eyebrow">You're invited to celebrate</p>
-      <h1 className="hero__title">Baby Shower Games</h1>
+      <h1 className="hero__title">Thank you all for coming</h1>
       <p className="hero__subtitle">
         Welcome, friends! We're so glad you're here. Get ready for a warm,
         silly, heartfelt afternoon of games together before the little one
@@ -19,6 +20,8 @@ export default function Hero({ onStart }) {
       <Button size="lg" onClick={onStart}>
         Start Games
       </Button>
+
+      <BabyCrawler names={friends} />
     </div>
   );
 }

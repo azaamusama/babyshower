@@ -2,7 +2,7 @@ import Button from "./ui/Button.jsx";
 import Motif from "./ui/Motif.jsx";
 import "./CompletionScreen.css";
 
-const confettiColors = ["var(--gold)", "var(--blush-deep)", "var(--sage-deep)"];
+const confettiColors = ["var(--gold)", "var(--brown-deep)", "var(--sage-deep)"];
 
 export default function CompletionScreen({ onRestart }) {
   const confetti = Array.from({ length: 10 });
