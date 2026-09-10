@@ -8,6 +8,19 @@ export default function MoreLikelyQuestion({ game, onFinish, isLast }) {
   const [selectedId, setSelectedId] = useState(null);
   const [revealed, setRevealed] = useState(false);
 
+  if (game.prompts.length === 0) {
+    return (
+      <div className="sub-view">
+        <p className="sub-view__example-note">
+          No questions added yet — add some to this game in src/data/games.js.
+        </p>
+        <Button size="lg" fullWidth onClick={onFinish}>
+          {isLast ? "Finish" : "Next Game"}
+        </Button>
+      </div>
+    );
+  }
+
   const prompt = game.prompts[promptIndex];
   const isLastPrompt = promptIndex === game.prompts.length - 1;
 

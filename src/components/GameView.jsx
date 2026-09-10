@@ -17,6 +17,7 @@ const viewByType = {
 export default function GameView({ game, total, onBack, onNext, isLast }) {
   const [phase, setPhase] = useState("setup");
   const [resetKey, setResetKey] = useState(0);
+  const badgeLabel = game.isStarter ? "Starter" : game.badge;
 
   const ActiveView = viewByType[game.type];
 
@@ -40,7 +41,7 @@ export default function GameView({ game, total, onBack, onNext, isLast }) {
 
       <div className="card game-view__card">
         <div className="game-view__heading">
-          {game.isStarter && <span className="tag-example">Starter</span>}
+          {badgeLabel && <span className="tag-example">{badgeLabel}</span>}
           <h2 className="game-view__title">{game.title}</h2>
           <p className="game-view__subtitle">{game.subtitle}</p>
         </div>

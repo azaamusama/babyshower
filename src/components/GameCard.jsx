@@ -1,6 +1,8 @@
 import "./GameCard.css";
 
 export default function GameCard({ game, onSelect }) {
+  const badgeLabel = game.isStarter ? "Starter" : game.badge;
+
   return (
     <button className="game-card anim-fade-in-up" onClick={onSelect}>
       <span className="game-card__number">
@@ -9,7 +11,7 @@ export default function GameCard({ game, onSelect }) {
       <div className="game-card__body">
         <div className="game-card__heading">
           <h3 className="game-card__title">{game.title}</h3>
-          {game.isStarter && <span className="tag-example game-card__badge">Starter</span>}
+          {badgeLabel && <span className="tag-example game-card__badge">{badgeLabel}</span>}
         </div>
         <p className="game-card__desc">{game.shortDescription}</p>
       </div>

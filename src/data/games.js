@@ -16,6 +16,9 @@
 //   'timer-challenge'  → setup + rules + optional countdown, no questions
 //   'more-likely'      → one question at a time, two choices (Partner A/B)
 //   'find-item'        → a scenario, then a few item choices to pick from
+//
+// `badge` (optional) shows a small label on the game's card and screen,
+// e.g. "Boys only" — the Starter game always shows "Starter" instead.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const PARTNER_A_NAME = "Partner A";
@@ -98,118 +101,55 @@ export const games = [
     hasTimer: false,
     timerSeconds: null,
     hasWinner: false,
-    exampleNote: "Example questions — host: replace with your own before the party.",
-    prompts: [
-      {
-        id: "more-likely-1",
-        text: "Who's more likely to sleep through the baby's first cry?",
-        isExample: true,
-        choices: [
-          { id: "a", label: PARTNER_A_NAME },
-          { id: "b", label: PARTNER_B_NAME },
-        ],
-        correctId: "a",
-      },
-      {
-        id: "more-likely-2",
-        text: "Who's more likely to cry happy tears first?",
-        isExample: true,
-        choices: [
-          { id: "a", label: PARTNER_A_NAME },
-          { id: "b", label: PARTNER_B_NAME },
-        ],
-        correctId: "b",
-      },
-      {
-        id: "more-likely-3",
-        text: "Who's more likely to spoil the baby with too many toys?",
-        isExample: true,
-        choices: [
-          { id: "a", label: PARTNER_A_NAME },
-          { id: "b", label: PARTNER_B_NAME },
-        ],
-        correctId: "b",
-      },
-    ],
+    exampleNote: null,
+    prompts: [],
   },
   {
-    id: "two-truths-and-a-lie",
+    id: "find-a-pair-of-socks",
     order: 4,
-    title: "2 Truths & a Lie",
-    subtitle: "Guessing game",
+    title: "Find a Pair of Socks",
+    subtitle: "Sock scramble",
     isStarter: false,
-    type: "vote-lie",
+    type: "timer-challenge",
     shortDescription:
-      "Three statements, one lie — can the guests spot it?",
-    purpose: "A social guessing game that can involve the parents-to-be or guests.",
-    format: "Three statements are displayed; exactly one is the lie.",
+      "Race to find and match the scattered baby socks before time runs out.",
+    purpose: "A fast, active matching game that gets everyone up and searching.",
+    format: "Players race against the clock to find and match sock pairs.",
     instructions: [
-      "Read the three statements out loud.",
-      "Guests vote on which statement they believe is the lie.",
-      "Reveal the answer.",
+      "Before the round, hide several mismatched baby socks around the room.",
+      "On 'go', players search for socks and match them back into pairs.",
+      "First player (or team) to find and match a full pair wins the round.",
     ],
-    materials: [],
-    hasTimer: false,
-    timerSeconds: null,
-    hasWinner: false,
-    exampleNote: "Example statements — host: replace with your own before the party.",
-    prompts: [
-      {
-        id: "truths-2-1",
-        statements: [
-          { id: "a", text: "We found out the gender at a family cookout.", isExample: true },
-          { id: "b", text: "We've already agreed on a middle name.", isExample: true },
-          { id: "c", text: "We haven't picked a name yet at all.", isExample: true },
-        ],
-        correctId: "c",
-      },
-    ],
+    materials: ["Several pairs of baby socks", "Hiding spots around the room"],
+    hasTimer: true,
+    timerSeconds: 45,
+    hasWinner: true,
+    exampleNote: null,
+    prompts: [],
   },
   {
-    id: "baby-emergency",
+    id: "balloon-belly-grab",
     order: 5,
-    title: "Baby Emergency — Find the Item Needed",
-    subtitle: "Quick response",
+    title: "Balloon Belly Grab",
+    subtitle: "Boys only",
     isStarter: false,
-    type: "find-item",
+    badge: "Boys only",
+    type: "timer-challenge",
     shortDescription:
-      "A baby emergency strikes — who can spot the right item fastest?",
-    purpose: "Test how quickly guests can identify the right baby item for a situation.",
-    format: "A baby-related emergency/situation is presented, followed by several possible items.",
+      "Grab the item from the floor with a balloon under your shirt.",
+    purpose: "A silly race testing balance and nerve with a 'baby bump' in the way.",
+    format: "One player (or one at a time) at a race against the clock.",
     instructions: [
-      "Read the scenario out loud.",
-      "Guests choose (or physically find) the item they think is needed.",
-      "Reveal the correct item.",
+      "Each player puts a balloon under his shirt, like a baby bump.",
+      "On 'go', the player must bend down and grab the item from the floor without popping the balloon.",
+      "Fastest time without popping the balloon wins the round.",
     ],
-    materials: ["Optional: a table of real baby items for guests to physically grab"],
-    hasTimer: false,
-    timerSeconds: null,
-    hasWinner: false,
-    exampleNote: "Example scenarios — host: replace with your own before the party.",
-    prompts: [
-      {
-        id: "emergency-1",
-        scenario: "The baby just spit up all over their outfit right before photos!",
-        isExample: true,
-        choices: [
-          { id: "a", label: "Burp cloth" },
-          { id: "b", label: "Pacifier" },
-          { id: "c", label: "Rattle" },
-        ],
-        correctId: "a",
-      },
-      {
-        id: "emergency-2",
-        scenario: "It's nap time but the baby won't settle down in the car.",
-        isExample: true,
-        choices: [
-          { id: "a", label: "Bottle warmer" },
-          { id: "b", label: "White noise machine" },
-          { id: "c", label: "Bath toy" },
-        ],
-        correctId: "b",
-      },
-    ],
+    materials: ["Balloons", "One small item to grab off the floor (e.g. a sock or spoon)"],
+    hasTimer: true,
+    timerSeconds: 30,
+    hasWinner: true,
+    exampleNote: null,
+    prompts: [],
   },
 ];
 
