@@ -166,6 +166,30 @@ export const games = [
     exampleNote: null,
     prompts: [],
   },
+  {
+    id: "catch-the-family",
+    order: 6,
+    title: "Catch the Family",
+    subtitle: "Arcade finale",
+    isStarter: false,
+    type: "catch-family",
+    shortDescription:
+      "Bouncing family faces need saving — slide the plank to keep them off the ground.",
+    purpose:
+      "A silly arcade closer — drag the plank left and right to bounce the family back up before they touch down.",
+    format: "One player drags a paddle to keep bouncing balls from hitting the ground.",
+    instructions: [
+      "Drag left and right along the bottom of the arena to move the plank.",
+      "Bounce each falling face back up before it touches the ground.",
+      "See how many family members you can save before time runs out!",
+    ],
+    materials: [],
+    hasTimer: true,
+    timerSeconds: 25,
+    hasWinner: true,
+    exampleNote: null,
+    prompts: [],
+  },
 ];
 
 export function getGameByIndex(index) {

@@ -5,6 +5,7 @@ import StatementVote from "./views/StatementVote.jsx";
 import TimerChallenge from "./views/TimerChallenge.jsx";
 import MoreLikelyQuestion from "./views/MoreLikelyQuestion.jsx";
 import FindItem from "./views/FindItem.jsx";
+import CatchFamily from "./views/CatchFamily.jsx";
 import "./GameView.css";
 
 const viewByType = {
@@ -12,6 +13,7 @@ const viewByType = {
   "timer-challenge": TimerChallenge,
   "more-likely": MoreLikelyQuestion,
   "find-item": FindItem,
+  "catch-family": CatchFamily,
 };
 
 export default function GameView({ game, total, onBack, onNext, isLast }) {
