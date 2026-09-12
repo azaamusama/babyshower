@@ -32,9 +32,14 @@ export default function GameView({ game, total, onBack, onNext, isLast }) {
         <button className="game-view__back" onClick={onBack}>
           ← Back
         </button>
-        <button className="game-view__restart" onClick={handleRestart}>
-          Restart
-        </button>
+        <div className="game-view__topbar-right">
+          <button className="game-view__restart" onClick={handleRestart}>
+            Restart
+          </button>
+          <button className="game-view__next" onClick={onNext}>
+            {isLast ? "Finish" : "Next"} →
+          </button>
+        </div>
       </div>
 
       <ProgressIndicator current={game.order} total={total} />

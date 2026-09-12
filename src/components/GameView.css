@@ -1,11 +1,19 @@
 .game-view__topbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: var(--space-sm);
 }
 
+.game-view__topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .game-view__back,
-.game-view__restart {
+.game-view__restart,
+.game-view__next {
   background: none;
   border: none;
   color: var(--ink-soft);
@@ -18,8 +26,13 @@
 }
 
 .game-view__back:hover,
-.game-view__restart:hover {
+.game-view__restart:hover,
+.game-view__next:hover {
   color: var(--ink);
+}
+
+.game-view__next {
+  color: var(--gold-deep);
 }
 
 .game-view__heading {

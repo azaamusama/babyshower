@@ -11,8 +11,10 @@ export default function MoreLikelyQuestion({ game, onFinish, isLast }) {
   if (game.prompts.length === 0) {
     return (
       <div className="sub-view">
-        <p className="sub-view__example-note">
-          No questions added yet — add some to this game in src/data/games.js.
+        <p className="sub-view__prompt-text">
+          Open the floor! Anyone can ask a "who's more likely to..." question
+          about the parents-to-be — everyone points to whoever they think
+          fits, then the parents-to-be reveal the real answer.
         </p>
         <Button size="lg" fullWidth onClick={onFinish}>
           {isLast ? "Finish" : "Next Game"}

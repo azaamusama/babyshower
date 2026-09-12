@@ -1,5 +1,6 @@
 import Button from "./ui/Button.jsx";
 import Motif from "./ui/Motif.jsx";
+import { friends } from "../data/friends.js";
 import "./CompletionScreen.css";
 
 const confettiColors = ["var(--gold)", "var(--brown-deep)", "var(--sage-deep)"];
@@ -31,6 +32,24 @@ export default function CompletionScreen({ onRestart }) {
       <Button variant="secondary" onClick={onRestart}>
         Restart All Games
       </Button>
+
+      <div className="completion__guests">
+        {friends.map((friend, i) => (
+          <div
+            key={i}
+            className="completion__guest anim-pop-in"
+            style={{ animationDelay: `${i * 0.06}s` }}
+          >
+            <div
+              className="completion__guest-face"
+              style={
+                friend.photo ? { backgroundImage: `url(${friend.photo})` } : undefined
+              }
+            />
+            <span className="completion__guest-name">{friend.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

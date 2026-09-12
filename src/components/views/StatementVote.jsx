@@ -14,10 +14,6 @@ export default function StatementVote({ game, onFinish, isLast }) {
   function handleSelect(id) {
     if (revealed) return;
     setSelectedId(id);
-  }
-
-  function handleReveal() {
-    if (!selectedId) return;
     setRevealed(true);
   }
 
@@ -35,10 +31,6 @@ export default function StatementVote({ game, onFinish, isLast }) {
 
   return (
     <div className="sub-view">
-      {game.exampleNote && (
-        <p className="sub-view__example-note">{game.exampleNote}</p>
-      )}
-
       <div className="sub-view__statements">
         {prompt.statements.map((statement) => {
           const isSelected = selectedId === statement.id;
@@ -61,11 +53,7 @@ export default function StatementVote({ game, onFinish, isLast }) {
         })}
       </div>
 
-      {!revealed ? (
-        <Button size="lg" fullWidth disabled={!selectedId} onClick={handleReveal}>
-          Reveal the Lie
-        </Button>
-      ) : (
+      {revealed && (
         <>
           <RevealBanner
             isCorrect={selectedId === prompt.correctId}

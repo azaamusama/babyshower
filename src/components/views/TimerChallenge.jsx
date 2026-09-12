@@ -4,6 +4,8 @@ import { playBellSound } from "../../utils/playBellSound.js";
 import { speakNumber, cancelSpeech } from "../../utils/speakNumber.js";
 import "./shared.css";
 
+const ANNOUNCE_FROM = 5;
+
 export default function TimerChallenge({ game, onFinish, isLast }) {
   const [phase, setPhase] = useState("ready"); // ready | running | done
   const [remaining, setRemaining] = useState(game.timerSeconds ?? 0);
@@ -37,7 +39,7 @@ export default function TimerChallenge({ game, onFinish, isLast }) {
       return;
     }
 
-    if (spokenRef.current !== remaining) {
+    if (remaining <= ANNOUNCE_FROM && spokenRef.current !== remaining) {
       spokenRef.current = remaining;
       speakNumber(remaining);
     }
