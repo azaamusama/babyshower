@@ -6,16 +6,18 @@ import { friends } from "../../data/friends.js";
 import "./CatchFamily.css";
 
 const ANNOUNCE_FROM = 5;
-const GRAVITY = 500; // px/s^2 — floaty enough to give a real chance to react
-const BALL_RADIUS = 28;
-const PADDLE_WIDTH = 110;
-const PADDLE_HEIGHT = 16;
+const GRAVITY = 420; // px/s^2 — floaty enough to give a real chance to react
+const BALL_RADIUS = 20;
+const PADDLE_WIDTH = 132; // 110 + 20%
+const PADDLE_HEIGHT = 19; // 16 + 20%
 const PADDLE_BOTTOM_OFFSET = 24;
+const PADDLE_KEY_SPEED = 480; // px/s when steering with the keyboard
 const BOUNCE_FACTOR = 0.95;
-const MIN_BOUNCE_SPEED = 300;
-const MAX_BOUNCE_SPEED = 700;
+const MIN_BOUNCE_SPEED = 260;
+const MAX_BOUNCE_SPEED = 600;
+const SPAWN_STEP_MS = 1200; // gap between each family member dropping in
 
-const roster = friends.filter((f) => f.photo).slice(0, 4);
+const roster = friends.filter((f) => f.photo);
 
 export default function CatchFamily({ game, onFinish, isLast }) {
   const [phase, setPhase] = useState("ready"); // ready | running | done
@@ -28,6 +30,7 @@ export default function CatchFamily({ game, onFinish, isLast }) {
   const ballsPhysicsRef = useRef([]);
   const paddleXRef = useRef(0);
   const draggingRef = useRef(false);
+  const keysRef = useRef({ left: false, right: false });
   const activeRef = useRef(false);
   const rafRef = useRef(null);
   const lastTimeRef = useRef(null);
@@ -61,28 +64,46 @@ export default function CatchFamily({ game, onFinish, isLast }) {
 
     ballsPhysicsRef.current = roster.map((_, i) => ({
       x: ((i + 0.5) / totalBalls) * width,
-      y: BALL_RADIUS + i * 12,
-      vx: (Math.random() - 0.5) * 180,
-      vy: -(500 + Math.random() * 150),
+      y: BALL_RADIUS,
+      vx: (Math.random() - 0.5) * 140,
+      vy: 0,
       lost: false,
+      spawned: false,
+      spawnAt: i * SPAWN_STEP_MS,
     }));
 
     ballsPhysicsRef.current.forEach((ball, i) => {
       const el = ballRefs.current[i];
       if (el) {
-        el.classList.remove("catch-family__ball--lost");
+        el.classList.remove("catch-family__ball--lost", "is-spawned");
         el.style.transform = `translate3d(${ball.x - BALL_RADIUS}px, ${ball.y - BALL_RADIUS}px, 0)`;
       }
     });
 
     activeRef.current = true;
     lastTimeRef.current = null;
+    let elapsedMs = 0;
 
     const loop = (time) => {
       if (!activeRef.current) return;
       const last = lastTimeRef.current ?? time;
       const dt = Math.min((time - last) / 1000, 0.05);
       lastTimeRef.current = time;
+      elapsedMs += dt * 1000;
+
+      const keys = keysRef.current;
+      if (keys.left || keys.right) {
+        const dir = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
+        const half = PADDLE_WIDTH / 2;
+        const nextX = Math.min(
+          Math.max(paddleXRef.current + dir * PADDLE_KEY_SPEED * dt, half),
+          width - half
+        );
+        paddleXRef.current = nextX;
+        if (paddleRef.current) {
+          paddleRef.current.style.transform = `translate3d(${nextX - half}px, 0, 0)`;
+        }
+      }
 
       const paddleY = height - PADDLE_BOTTOM_OFFSET - PADDLE_HEIGHT;
       const paddleX = paddleXRef.current;
@@ -90,6 +111,13 @@ export default function CatchFamily({ game, onFinish, isLast }) {
 
       ballsPhysicsRef.current.forEach((ball, i) => {
         if (ball.lost) return;
+
+        if (!ball.spawned) {
+          if (elapsedMs < ball.spawnAt) return;
+          ball.spawned = true;
+          const el = ballRefs.current[i];
+          if (el) el.classList.add("is-spawned");
+        }
 
         ball.vy += GRAVITY * dt;
         ball.x += ball.vx * dt;
@@ -153,6 +181,41 @@ export default function CatchFamily({ game, onFinish, isLast }) {
       cancelAnimationFrame(rafRef.current);
     };
   }, [phase, totalBalls]);
+
+  // Arrow keys / A-D steer the paddle — read by the physics loop above via
+  // keysRef, so movement stays smooth and frame-synced like pointer drag.
+  useEffect(() => {
+    if (phase !== "running") return undefined;
+
+    function handleKeyDown(e) {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+        keysRef.current.left = true;
+      } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+        keysRef.current.right = true;
+      } else {
+        return;
+      }
+      e.preventDefault();
+    }
+
+    function handleKeyUp(e) {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+        keysRef.current.left = false;
+      } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+        keysRef.current.right = false;
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      keysRef.current.left = false;
+      keysRef.current.right = false;
+    };
+  }, [phase]);
 
   // Countdown tick — kept free of side effects (see TimerChallenge.jsx for why).
   useEffect(() => {
@@ -224,8 +287,9 @@ export default function CatchFamily({ game, onFinish, isLast }) {
       {phase === "ready" && (
         <>
           <p className="sub-view__timer-hint">
-            {totalBalls} family members are bouncing loose! Drag the plank to
-            keep them off the ground for {game.timerSeconds} seconds.
+            {totalBalls} family members will drop in one by one! Drag the
+            plank (or use the arrow keys) to keep them off the ground for{" "}
+            {game.timerSeconds} seconds.
           </p>
           <Button size="lg" fullWidth onClick={handleStart}>
             Start

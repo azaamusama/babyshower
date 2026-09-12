@@ -10,7 +10,7 @@
 .catch-family__arena {
   position: relative;
   width: 100%;
-  height: min(60vh, 420px);
+  height: min(72vh, 540px);
   background: var(--cream-deep);
   border-radius: var(--r-md);
   overflow: hidden;
@@ -23,18 +23,23 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  border: 3px solid var(--white);
+  border: 2px solid var(--white);
   box-shadow: var(--shadow-sm);
   will-change: transform;
-  transition: opacity 0.4s ease, filter 0.4s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease, filter 0.4s ease;
 }
 
-.catch-family__ball--lost {
+.catch-family__ball.is-spawned {
+  opacity: 1;
+}
+
+.catch-family__ball.catch-family__ball--lost {
   opacity: 0.35;
   filter: grayscale(1);
   border-color: var(--danger);
@@ -45,8 +50,8 @@
   position: absolute;
   bottom: 24px;
   left: 0;
-  width: 110px;
-  height: 16px;
+  width: 132px;
+  height: 19px;
   border-radius: var(--r-pill);
   background: linear-gradient(90deg, var(--gold) 0%, var(--brown-deep) 100%);
   box-shadow: var(--shadow-sm);
