@@ -38,7 +38,6 @@ export default function StatementVote({ game, onFinish, isLast }) {
       {game.exampleNote && (
         <p className="sub-view__example-note">{game.exampleNote}</p>
       )}
-      <p className="sub-view__prompt-label">Which one is the lie?</p>
 
       <div className="sub-view__statements">
         {prompt.statements.map((statement) => {

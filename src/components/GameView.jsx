@@ -50,28 +50,6 @@ export default function GameView({ game, total, onBack, onNext, isLast }) {
           <div className="game-view__setup anim-fade-in-up">
             <p className="game-view__purpose">{game.purpose}</p>
 
-            {game.instructions.length > 0 && (
-              <div className="game-view__section">
-                <p className="game-view__section-label">How to play</p>
-                <ol className="game-view__list">
-                  {game.instructions.map((step, i) => (
-                    <li key={i}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-            )}
-
-            {game.materials.length > 0 && (
-              <div className="game-view__section">
-                <p className="game-view__section-label">What you'll need</p>
-                <ul className="game-view__list game-view__list--plain">
-                  {game.materials.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             <Button size="lg" fullWidth onClick={() => setPhase("active")}>
               {game.hasTimer ? "Get Ready" : "Begin"}
             </Button>
