@@ -2,9 +2,11 @@
   position: relative;
   text-align: center;
   padding: var(--space-xl) var(--space-md);
+  min-height: calc(100vh - 2 * var(--space-xl));
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--space-md);
 }
 
@@ -32,6 +34,13 @@
   left: 2.5rem;
   color: var(--sage-deep);
   animation-delay: 1s;
+}
+
+.hero__motif--4 {
+  bottom: 1rem;
+  right: 1.5rem;
+  opacity: 1;
+  animation-delay: 0.4s;
 }
 
 .hero__title {
