@@ -1,6 +1,5 @@
 import Button from "./ui/Button.jsx";
 import Motif from "./ui/Motif.jsx";
-import Pacifier from "./ui/Pacifier.jsx";
 import BabyCrawler from "./BabyCrawler.jsx";
 import { friends } from "../data/friends.js";
 import "./Hero.css";
@@ -11,7 +10,6 @@ export default function Hero({ onStart }) {
       <Motif shape="star" size={28} className="hero__motif hero__motif--1 anim-float" />
       <Motif shape="balloon" size={34} className="hero__motif hero__motif--2 anim-float" />
       <Motif shape="bow" size={26} className="hero__motif hero__motif--3 anim-float" />
-      <Pacifier photo="/friends/suleman.jpeg" size={46} className="hero__motif hero__motif--4 anim-float" />
 
       <h1 className="hero__title">Thank you all for coming</h1>
       <p className="hero__subtitle">
